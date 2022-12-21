@@ -23,6 +23,24 @@ namespace BookOfInvoices
                 }
             }
 
+#if (DEBUG)
+            Console.WriteLine("Mode=Debug");
+            string line;
+
+            Console.WriteLine("Zadej hodnotu pro minPocetFaktur ve formatu: 'minPocetFaktur =cislo'");
+            line = input.ReadLine();
+            if (line.Contains(Helpers.getMinValue()))
+            {
+                minPocetFaktur = Helpers.getIntFromString(line);
+            }
+
+            Console.WriteLine("Zadej hodnotu maxPocetFaktur ve formatu: 'maxPocetFaktur =cislo'");
+            line = input.ReadLine();
+            if (line.Contains(Helpers.getMaxValue()))
+            {
+                maxPocetFaktur = Helpers.getIntFromString(line);
+            }
+#elif (RELEASE)
             // use `input` for all input operations
             for (string line; (line = input.ReadLine()) != null;)
             {
@@ -43,6 +61,7 @@ namespace BookOfInvoices
                     break;
                 }
             }
+#endif
 
             BookOfInvoice bookOfInvoice = new BookOfInvoice();
             bookOfInvoice.fillBookOfInvoices(minPocetFaktur, maxPocetFaktur);
